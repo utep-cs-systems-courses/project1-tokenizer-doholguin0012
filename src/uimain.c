@@ -16,6 +16,9 @@ int main()
       fgets(sentence, sizeof(sentence),stdin); //getting the sentence or words.
       printf("1:true 0:false [%d]\n",space_char(sentence[0])); //getting the sentence to the Token object.
       printf("1:true 0:false [%d]\n",non_space_char(sentence[0]));
+      puts(word_start(sentence));
+      puts(word_terminator(sentence));
+      printf("The total amount of words are: [%d]\n",count_words(sentence));
       break;
     case 'b':
       break;
