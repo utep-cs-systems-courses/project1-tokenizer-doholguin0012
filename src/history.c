@@ -15,7 +15,7 @@ void add_history(List *list, char *str){
   if(temp == NULL){// check if the items is Empty
     list->root = new;
     new->id = id;
-    new->str = nstr;
+    new->str = str;
     new->next = NULL;
   }
   else{
@@ -25,7 +25,7 @@ void add_history(List *list, char *str){
     }
     temp->next = new; // adding a new Item on next pointer
     new->id = id;// id
-    new->str = nstr;//string 
+    new->str = str;//string 
     new->next= NULL;//setting the next pointer to null
   }
 }
