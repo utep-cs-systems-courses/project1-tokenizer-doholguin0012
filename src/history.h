@@ -8,7 +8,6 @@ typedef struct s_Item {
 } Item;
 
 typedef struct s_List {
-  int id;
   struct s_Item *root;
 } List;
 
@@ -20,6 +19,7 @@ List* init_history();
    char* str - the string to store
 */
 void add_history(List *list, char *str);
+
 
 /* Retrieve the string stored in the node where Item->id == id.
    List* list - the linked list

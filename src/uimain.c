@@ -6,13 +6,13 @@
 int main()
 {
   while(1){
-    char choice [10];
     char str [100];
+    char c[100];
     List *history = init_history();
     printf("please choose the an option\n a) Tokenizer\n b) History\n q) quit \n>");
-    fgets(choice,sizeof(choice),stdin);
-    add_history(history, choice);
-    switch(choice[0]){
+    fgets(c,sizeof(c),stdin);
+    add_history(history, c);
+    switch(c[0]){
     case 'a':
       printf("You have choosen the Tokenizer option \n please enter a sentecne or word: \n>");
       fgets(str, sizeof(str),stdin); //getting the sentence or words.
@@ -33,7 +33,7 @@ int main()
       free_tokens(tokens);
       break;
     case 'b':
-      print_history(history);
+      printf("string at [1]: %s \n",get_history(history,1));
       break;
     case 'q':
       goto done;
