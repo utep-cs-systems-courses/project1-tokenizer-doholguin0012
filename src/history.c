@@ -13,13 +13,17 @@ void add_history(List *list, char *str){
   Item *temp = list->root;// getting the pointer address.
   Item *new = malloc(sizeof(Item));
   if(temp == NULL){// check if the items is Empty
+    //puts("Im here");
     list->root = new;
     new->id = id;
     new->str = str;
     new->next = NULL;
   }
   else{
-    while(temp->next != NULL){// travers to the end of the pointer 
+    // puts("Im in else");
+    id++;
+    while(temp->next != NULL){// travers to the end of the pointer
+      // puts("did I enter here ");
       id++;
       temp = temp-> next;
     }
@@ -45,5 +49,30 @@ char *get_history(List *list, int id){
   }
 }
 void print_history(List *list){
-  
+  Item *temp = list->root;
+  if(temp == NULL){
+    return;
+  }
+  else{
+    while(temp !=NULL){
+      printf("History number[%d]: %s\n",temp->id, temp->str);
+      temp = temp->next;
+    }
+  }
+}
+void free_history(List *list){
+  Item *temp = list ->root;
+  Item *empty;
+  if(temp == NULL){
+    printf("there is nothing to be free \n");
+    return;
+  }
+  else{
+    while(temp !=NULL){
+      empty = temp;
+      temp = temp->next;
+      free(empty);
+    }
+    printf("History has been free.\n");
+  }
 }

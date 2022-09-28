@@ -3,20 +3,34 @@
 #include "tokenizer.h"
 #include <stdlib.h>
 
+short word_Lenght(char *s){
+  short count = 0;
+  while(*s !='\0'){
+    count +=1;
+    s++;
+  }
+  return count;
+}
+
 int main()
 {
+  char *p = malloc((100) * sizeof(char));
+  char *copy = p;
+  char *stp = malloc((100) * sizeof(char));
+  char *scopy= stp;
+  List *history = init_history();
   while(1){
     char str [100];
     char c[100];
-    List *history = init_history();
+    char *x,*y;
     printf("please choose the an option\n a) Tokenizer\n b) History\n q) quit \n>");
     fgets(c,sizeof(c),stdin);
-    int clen = count_words(c);
-    
-    char *copy_c = copy_str(c, (word_terminator(c))-c);
-    add_history(history, copy_c);
     switch(c[0]){
     case 'a':
+      x= word_start(c);
+      y= word_terminator(c);
+      p = copy_str(c,y-x);
+      add_history(history,p);
       printf("You have choosen the Tokenizer option \n please enter a sentecne or word: \n>");
       fgets(str, sizeof(str),stdin);//getting the sentence or words.
       
@@ -31,13 +45,18 @@ int main()
       char *test = copy_str(str, etest - stest);
       puts(test);
       */
-      add_history(history,str);
+      stp = copy_str(str, word_Lenght(str));
+      add_history(history,stp);
       char **tokens = tokenize(str);
       print_tokens(tokens);
       free_tokens(tokens);
       break;
     case 'b':
-      printf("string at [1]: %s \n",get_history(history,1));
+      x= word_start(c);
+      y= word_terminator(c);
+      p = copy_str(c,y-x);
+      add_history(history,p);
+      print_history(history);
       break;
     case 'q':
       goto done;
@@ -45,8 +64,10 @@ int main()
       puts("Not a choice try again!!");
       break;
     }
+    p++;
+    stp++;
   }
  done:
- return 0;
-  
+  free_history(history);
+  return 0;
 }
