@@ -19,7 +19,8 @@ int main()
   char *stp = malloc((100) * sizeof(char));
   char *scopy= stp;
   List *history = init_history();
-  while(1){
+  while (1)
+    {
     char str [100];
     char c[100];
     char *x,*y;
