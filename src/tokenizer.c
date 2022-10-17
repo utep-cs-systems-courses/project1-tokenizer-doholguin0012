@@ -64,16 +64,16 @@ char **tokenize( char *str)
   char **token = malloc((wcount + 1) * sizeof(char*));
   char **tokens = token;
   char * endw = str;
-  while (wcount>0)
+  while(wcount>0)
     {
       str = word_start(str);
       endw = word_terminator(str);
       *token = copy_str(str, endw - str);
+      *(token +=1);
       str = endw;
-      token++;
       wcount--;
     }
-  token = '\0';
+  *token = '\0';
   return tokens;
 }
 void print_tokens(char **tokens)
